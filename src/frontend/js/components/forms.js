@@ -1,5 +1,10 @@
+import api from '../api.js';
+import { createTextField } from './text-field.js';
+import { createLongAnswer } from './long-answer.js';
+import { createSponsorSelect } from './sponsor-select.js';
+
 // ── Modal ────────────────────────────────────────────────────
-const modal = (() => {
+export const modal = (() => {
   let activeSponsorSelect = null;
 
   function init() {
@@ -62,7 +67,7 @@ function setFormError(form, message) {
 }
 
 // ── Legislator form ──────────────────────────────────────────
-function openLegislatorForm(onSuccess, existing = null) {
+export function openLegislatorForm(onSuccess, existing = null) {
   const form = document.createElement('form');
   form.noValidate = true;
 
@@ -138,7 +143,7 @@ function openLegislatorForm(onSuccess, existing = null) {
 }
 
 // ── Legislation form ─────────────────────────────────────────
-async function openLegislationForm(onSuccess, existing = null) {
+export async function openLegislationForm(onSuccess, existing = null) {
   const form = document.createElement('form');
   form.noValidate = true;
 

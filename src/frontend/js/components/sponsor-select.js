@@ -1,4 +1,4 @@
-function createSponsorSelect({ label, legislators = [], selectedIds = [] }) {
+export function createSponsorSelect({ label, legislators = [], selectedIds = [] }) {
   const group = document.createElement('div');
   group.className = 'form-group';
 
