@@ -47,6 +47,20 @@ tbody tr:hover {
   padding: 2.5rem;
 }
 
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border);
+  border-top-color: var(--text-muted);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .error-row td {
   color: #dc2626;
   text-align: center;
