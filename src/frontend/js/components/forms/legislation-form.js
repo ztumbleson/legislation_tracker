@@ -1,0 +1,81 @@
+import api from '../../api.js';
+import { createTextField } from '../text-field.js';
+import { createLongAnswer } from '../long-answer.js';
+import { createSponsorSelect } from '../sponsor-select.js';
+import { modal } from './modal.js';
+import { setFieldError, clearFieldError, setFormError } from './form-utils.js';
+
+export async function openLegislationForm(onSuccess, existing = null) {
+  const form = document.createElement('form');
+  form.noValidate = true;
+
+  const title = createTextField({ id: 'lf-title', label: 'Title', required: true, placeholder: 'Clean Air Act 2026' });
+  const text  = createLongAnswer({ id: 'lf-text',  label: 'Text',  required: true, placeholder: 'The full text of the legislation...' });
+
+  if (existing) {
+    title.input.value = existing.title;
+    text.input.value  = existing.text;
+  }
+
+  let legislators = [];
+  try { legislators = await api.getLegislators(); } catch (_) {}
+
+  const selectedIds = existing ? (existing.sponsors || []).map(s => s.id) : [];
+  const sponsors = createSponsorSelect({ label: 'Sponsors', legislators, selectedIds });
+  modal.setSponsorSelect(sponsors);
+
+  const actions = document.createElement('div');
+  actions.className = 'form-actions';
+
+  const submitBtn = document.createElement('button');
+  submitBtn.type = 'submit';
+  submitBtn.className = 'btn btn-primary';
+  submitBtn.textContent = existing ? 'Save Changes' : 'Add Legislation';
+  actions.appendChild(submitBtn);
+
+  form.appendChild(title.el);
+  form.appendChild(text.el);
+  form.appendChild(sponsors.el);
+  form.appendChild(actions);
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    let valid = true;
+    [{ field: title, val: title.input.value }, { field: text, val: text.input.value }]
+      .forEach(({ field, val }) => {
+        if (!val.trim()) {
+          setFieldError(field.el, 'This field is required');
+          valid = false;
+        } else {
+          clearFieldError(field.el);
+        }
+      });
+    if (!valid) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving...';
+
+    const data = {
+      title:       title.input.value.trim(),
+      text:        text.input.value.trim(),
+      sponsor_ids: sponsors.getSelected(),
+    };
+
+    try {
+      if (existing) {
+        await api.updateLegislation(existing.id, data);
+      } else {
+        await api.createLegislation(data);
+      }
+      modal.close();
+      onSuccess();
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = existing ? 'Save Changes' : 'Add Legislation';
+      setFormError(form, err.message);
+    }
+  });
+
+  modal.open(existing ? 'Edit Legislation' : 'New Legislation', form);
+}
