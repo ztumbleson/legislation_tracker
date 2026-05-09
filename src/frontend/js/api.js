@@ -75,3 +75,5 @@ const api = {
     if (!res.ok) throw new Error('Failed to delete legislation');
   },
 };
+
+export default api;

@@ -1,4 +1,4 @@
-function createLongAnswer({ id, label, required = false, placeholder = '' }) {
+export function createLongAnswer({ id, label, required = false, placeholder = '' }) {
   const group = document.createElement('div');
   group.className = 'form-group';
 

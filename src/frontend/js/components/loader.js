@@ -1,4 +1,4 @@
-async function loadPartials() {
+export async function loadPartials() {
   const partials = [
     { url: 'html/navbar.html',           slot: 'slot-navbar' },
     { url: 'html/view-legislators.html', slot: 'slot-legislators' },
@@ -10,8 +10,4 @@ async function loadPartials() {
     const res = await fetch(url);
     document.getElementById(slot).innerHTML = await res.text();
   }));
-
-  document.dispatchEvent(new Event('app:ready'));
 }
-
-loadPartials();
