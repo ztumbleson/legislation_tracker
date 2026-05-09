@@ -1,4 +1,4 @@
-function createSponsorSelect({ label, legislators = [] }) {
+function createSponsorSelect({ label, legislators = [], selectedIds = [] }) {
   const group = document.createElement('div');
   group.className = 'form-group';
 
@@ -47,7 +47,7 @@ function createSponsorSelect({ label, legislators = [] }) {
   group.appendChild(lbl);
   group.appendChild(wrapper);
 
-  const selected = new Set();
+  const selected = new Set(selectedIds);
 
   function renderList(filter = '') {
     list.innerHTML = '';
@@ -137,6 +137,7 @@ function createSponsorSelect({ label, legislators = [] }) {
   document.addEventListener('mousedown', onDocClick);
 
   renderList();
+  if (selectedIds.length) renderPills();
 
   return {
     el: group,

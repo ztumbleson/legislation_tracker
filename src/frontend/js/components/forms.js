@@ -62,7 +62,7 @@ function setFormError(form, message) {
 }
 
 // ── Legislator form ──────────────────────────────────────────
-function openLegislatorForm(onSuccess) {
+function openLegislatorForm(onSuccess, existing = null) {
   const form = document.createElement('form');
   form.noValidate = true;
 
@@ -70,13 +70,19 @@ function openLegislatorForm(onSuccess) {
   const lastName  = createTextField({ id: 'lf-last-name',  label: 'Last Name',  required: true, placeholder: 'Doe' });
   const hometown  = createTextField({ id: 'lf-hometown',   label: 'Hometown',   required: true, placeholder: 'Springfield' });
 
+  if (existing) {
+    firstName.input.value = existing.first_name;
+    lastName.input.value  = existing.last_name;
+    hometown.input.value  = existing.hometown;
+  }
+
   const actions = document.createElement('div');
   actions.className = 'form-actions';
 
   const submitBtn = document.createElement('button');
   submitBtn.type = 'submit';
   submitBtn.className = 'btn btn-primary';
-  submitBtn.textContent = 'Add Legislator';
+  submitBtn.textContent = existing ? 'Save Changes' : 'Add Legislator';
   actions.appendChild(submitBtn);
 
   form.appendChild(firstName.el);
@@ -107,36 +113,48 @@ function openLegislatorForm(onSuccess) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Saving...';
 
+    const data = {
+      first_name: firstName.input.value.trim(),
+      last_name:  lastName.input.value.trim(),
+      hometown:   hometown.input.value.trim(),
+    };
+
     try {
-      await api.createLegislator({
-        first_name: firstName.input.value.trim(),
-        last_name:  lastName.input.value.trim(),
-        hometown:   hometown.input.value.trim(),
-      });
+      if (existing) {
+        await api.updateLegislator(existing.id, data);
+      } else {
+        await api.createLegislator(data);
+      }
       modal.close();
       onSuccess();
     } catch (err) {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Add Legislator';
+      submitBtn.textContent = existing ? 'Save Changes' : 'Add Legislator';
       setFormError(form, err.message);
     }
   });
 
-  modal.open('New Legislator', form);
+  modal.open(existing ? 'Edit Legislator' : 'New Legislator', form);
 }
 
 // ── Legislation form ─────────────────────────────────────────
-async function openLegislationForm(onSuccess) {
+async function openLegislationForm(onSuccess, existing = null) {
   const form = document.createElement('form');
   form.noValidate = true;
 
   const title = createTextField({ id: 'lf-title', label: 'Title', required: true, placeholder: 'Clean Air Act 2026' });
   const text  = createLongAnswer({ id: 'lf-text',  label: 'Text',  required: true, placeholder: 'The full text of the legislation...' });
 
+  if (existing) {
+    title.input.value = existing.title;
+    text.input.value  = existing.text;
+  }
+
   let legislators = [];
   try { legislators = await api.getLegislators(); } catch (_) {}
 
-  const sponsors = createSponsorSelect({ label: 'Sponsors', legislators });
+  const selectedIds = existing ? (existing.sponsors || []).map(s => s.id) : [];
+  const sponsors = createSponsorSelect({ label: 'Sponsors', legislators, selectedIds });
   modal.setSponsorSelect(sponsors);
 
   const actions = document.createElement('div');
@@ -145,7 +163,7 @@ async function openLegislationForm(onSuccess) {
   const submitBtn = document.createElement('button');
   submitBtn.type = 'submit';
   submitBtn.className = 'btn btn-primary';
-  submitBtn.textContent = 'Add Legislation';
+  submitBtn.textContent = existing ? 'Save Changes' : 'Add Legislation';
   actions.appendChild(submitBtn);
 
   form.appendChild(title.el);
@@ -171,20 +189,26 @@ async function openLegislationForm(onSuccess) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Saving...';
 
+    const data = {
+      title:       title.input.value.trim(),
+      text:        text.input.value.trim(),
+      sponsor_ids: sponsors.getSelected(),
+    };
+
     try {
-      await api.createLegislation({
-        title:       title.input.value.trim(),
-        text:        text.input.value.trim(),
-        sponsor_ids: sponsors.getSelected(),
-      });
+      if (existing) {
+        await api.updateLegislation(existing.id, data);
+      } else {
+        await api.createLegislation(data);
+      }
       modal.close();
       onSuccess();
     } catch (err) {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Add Legislation';
+      submitBtn.textContent = existing ? 'Save Changes' : 'Add Legislation';
       setFormError(form, err.message);
     }
   });
 
-  modal.open('New Legislation', form);
+  modal.open(existing ? 'Edit Legislation' : 'New Legislation', form);
 }
