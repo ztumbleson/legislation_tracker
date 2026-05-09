@@ -1,5 +1,5 @@
 import { loadPartials } from './components/loader.js';
-import { modal } from './components/forms.js';
+import { modal } from './components/forms/modal.js';
 import { loadLegislators, initLegislatorsView } from './views/legislators.js';
 import { loadLegislation, initLegislationView } from './views/legislation.js';
 
