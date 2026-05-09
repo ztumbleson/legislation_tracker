@@ -38,4 +38,40 @@ const api = {
     }
     return res.json();
   },
+
+  async updateLegislator(id, data) {
+    const res = await fetch(`${API_BASE}/legislators/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Failed to update legislator');
+    }
+    return res.json();
+  },
+
+  async deleteLegislator(id) {
+    const res = await fetch(`${API_BASE}/legislators/${id}`, { method: 'DELETE' });
+    if (!res.ok) throw new Error('Failed to delete legislator');
+  },
+
+  async updateLegislation(id, data) {
+    const res = await fetch(`${API_BASE}/legislation/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Failed to update legislation');
+    }
+    return res.json();
+  },
+
+  async deleteLegislation(id) {
+    const res = await fetch(`${API_BASE}/legislation/${id}`, { method: 'DELETE' });
+    if (!res.ok) throw new Error('Failed to delete legislation');
+  },
 };
