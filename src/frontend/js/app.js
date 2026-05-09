@@ -34,7 +34,7 @@ document.addEventListener('app:ready', () => {
 // ── Legislators table ────────────────────────────────────────
 async function loadLegislators() {
   const tbody = document.getElementById('tbody-legislators');
-  tbody.innerHTML = '<tr class="placeholder-row"><td colspan="3">Loading...</td></tr>';
+  tbody.innerHTML = '<tr class="placeholder-row"><td colspan="3"><div class="spinner"></div></td></tr>';
   try {
     const legislators = await api.getLegislators();
     renderLegislatorsTable(legislators);
@@ -61,7 +61,7 @@ function renderLegislatorsTable(legislators) {
 // ── Legislation table ────────────────────────────────────────
 async function loadLegislation() {
   const tbody = document.getElementById('tbody-legislation');
-  tbody.innerHTML = '<tr class="placeholder-row"><td colspan="3">Loading...</td></tr>';
+  tbody.innerHTML = '<tr class="placeholder-row"><td colspan="3"><div class="spinner"></div></td></tr>';
   try {
     const legislation = await api.getLegislation();
     renderLegislationTable(legislation);
