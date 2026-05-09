@@ -19,8 +19,14 @@ function showView(viewId) {
   document.querySelector(`[data-view="${viewId}"]`).classList.add('active');
 }
 
+const navbar = document.querySelector('.navbar');
+const hamburger = document.querySelector('.nav-hamburger');
+
+hamburger.addEventListener('click', () => navbar.classList.toggle('open'));
+
 navBtns.forEach(btn => {
   btn.addEventListener('click', () => {
+    navbar.classList.remove('open');
     const view = btn.dataset.view;
     showView(view);
     if (view === 'legislators') loadLegislators();

@@ -1,7 +1,7 @@
 import api from '../../utilities/api.js';
-import { createTextField } from '../text-field.js';
+import { createTextField } from '../textField.js';
 import { modal } from './modal.js';
-import { setFieldError, clearFieldError, setFormError } from './form-utils.js';
+import { setFieldError, clearFieldError, setFormError } from './formUtils.js';
 
 export function openLegislatorForm(onSuccess, existing = null) {
   const form = document.createElement('form');

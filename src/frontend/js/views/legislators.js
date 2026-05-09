@@ -1,6 +1,6 @@
-import api from '../api.js';
+import api from '../utilities/api.js';
 import { escHtml } from '../utilities/utils.js';
-import { openLegislatorForm } from '../components/forms/legislator-form.js';
+import { openLegislatorForm } from '../components/forms/legislatorForm.js';
 
 let _legislatorsData = [];
 

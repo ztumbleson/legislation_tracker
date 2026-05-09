@@ -1,8 +1,8 @@
 export async function loadPartials() {
   const partials = [
     { url: 'html/navbar.html',           slot: 'slot-navbar' },
-    { url: 'html/view-legislators.html', slot: 'slot-legislators' },
-    { url: 'html/view-legislation.html', slot: 'slot-legislation' },
+    { url: 'html/viewLegislators.html', slot: 'slot-legislators' },
+    { url: 'html/viewLegislation.html', slot: 'slot-legislation' },
     { url: 'html/modal.html',            slot: 'slot-modal' },
   ];
 
