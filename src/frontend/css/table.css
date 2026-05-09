@@ -88,3 +88,9 @@ tbody tr:hover {
 .actions-cell .btn + .btn {
   margin-left: 6px;
 }
+
+@media (max-width: 480px) {
+  .table-container {
+    overflow-x: auto;
+  }
+}

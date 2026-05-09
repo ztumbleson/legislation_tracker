@@ -1,9 +1,9 @@
-import api from '../../api.js';
-import { createTextField } from '../text-field.js';
-import { createLongAnswer } from '../long-answer.js';
-import { createSponsorSelect } from '../sponsor-select.js';
+import api from '../../utilities/api.js';
+import { createTextField } from '../textField.js';
+import { createLongAnswer } from '../longAnswer.js';
+import { createSponsorSelect } from '../sponsorSelect.js';
 import { modal } from './modal.js';
-import { setFieldError, clearFieldError, setFormError } from './form-utils.js';
+import { setFieldError, clearFieldError, setFormError } from './formUtils.js';
 
 export async function openLegislationForm(onSuccess, existing = null) {
   const form = document.createElement('form');
