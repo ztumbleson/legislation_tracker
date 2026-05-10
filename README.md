@@ -6,7 +6,7 @@ A web app for tracking legislation and bill sponsors.
 
 ## Live App
 
-I was having fun and went a bit overboard here, but this is a live deployed version of the application (static serving from railway with postgres via Supabase underneath). If the instructions below don't work, feel free to observe the functionality here.
+I was having fun and went a bit overboard here, but this is a live deployed version of the application (static HTML/CSS/JS serving from railway with NodeJS and postgres (via Supabase) underneath). If the instructions below don't work, feel free to observe the functionality here.
 
 **https://legislationtracker.up.railway.app**
 
