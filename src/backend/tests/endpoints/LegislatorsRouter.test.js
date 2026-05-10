@@ -1,16 +1,16 @@
 const request = require('supertest');
 const express = require('express');
 
-jest.mock('../../src/repositories/legislatorRepository', () => ({
+jest.mock('../../repositories/legislatorRepository', () => ({
   findAll: jest.fn(),
   findById: jest.fn(),
   create: jest.fn(),
   update: jest.fn(),
   remove: jest.fn(),
 }));
-const repo = require('../../src/repositories/legislatorRepository');
+const repo = require('../../repositories/legislatorRepository');
 
-jest.mock('../../src/repositories/legislationRepository', () => ({
+jest.mock('../../repositories/legislationRepository', () => ({
   findAll: jest.fn(),
   findById: jest.fn(),
   findBySponsor: jest.fn(),
@@ -18,9 +18,9 @@ jest.mock('../../src/repositories/legislationRepository', () => ({
   update: jest.fn(),
   remove: jest.fn(),
 }));
-const legislationRepo = require('../../src/repositories/legislationRepository');
+const legislationRepo = require('../../repositories/legislationRepository');
 
-const router = require('../../src/endpoints/LegislatorsRouter');
+const router = require('../../endpoints/LegislatorsRouter');
 
 const app = express();
 app.use(express.json());

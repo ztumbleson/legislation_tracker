@@ -1,3 +1,9 @@
+//
+// legislationRepository.js
+// 05-09-2026
+// Data access layer for the legislation table and sponsor relationships
+//
+
 const supabase = require('../supabaseClient');
 
 const sponsorSelect = `
@@ -7,11 +13,10 @@ const sponsorSelect = `
   )
 `;
 
-function flattenSponsors(row) {
+function flattenSponsors({ legislation_sponsors, ...row }) {
   return {
     ...row,
-    sponsors: (row.legislation_sponsors ?? []).map((s) => s.legislator),
-    legislation_sponsors: undefined,
+    sponsors: (legislation_sponsors ?? []).map((s) => s.legislator),
   };
 }
 
@@ -62,7 +67,8 @@ async function update(id, title, text, sponsorIds = []) {
   if (legError?.code === 'PGRST116') return null;
   if (legError) throw legError;
 
-  await supabase.from('legislation_sponsors').delete().eq('legislation_id', id);
+  const { error: deleteError } = await supabase.from('legislation_sponsors').delete().eq('legislation_id', id);
+  if (deleteError) throw deleteError;
   if (sponsorIds.length > 0) {
     const rows = sponsorIds.map((sid) => ({ legislation_id: id, legislator_id: sid }));
     const { error: sponsorError } = await supabase.from('legislation_sponsors').insert(rows);

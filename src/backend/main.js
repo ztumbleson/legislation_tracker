@@ -17,13 +17,13 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../../frontend')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.use('/legislators', legislatorsRouter);
 app.use('/legislation', legislationRouter);
 
 // Global error handler — catches any unhandled errors thrown in route handlers
-app.use((err, req, res, next) => {
+app.use((err, _req, res, _next) => {
   console.error(err);
   res.status(500).json({ error: 'Internal server error' });
 });

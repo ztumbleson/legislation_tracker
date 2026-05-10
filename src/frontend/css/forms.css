@@ -68,5 +68,23 @@ form {
 .form-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
   padding-top: 0.25rem;
+}
+
+.delete-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.delete-confirm-message {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.delete-confirm-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
 }

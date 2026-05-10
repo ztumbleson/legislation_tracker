@@ -1,4 +1,5 @@
 import api from '../../utilities/api.js';
+import { show as showToast } from '../../utilities/toast.js';
 import { createTextField } from '../textField.js';
 import { createLongAnswer } from '../longAnswer.js';
 import { createSponsorSelect } from '../sponsorSelect.js';
@@ -45,16 +46,20 @@ export async function openLegislationForm(onSuccess, existing = null) {
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
+    const fields = [
+      { field: title, input: title.input },
+      { field: text,  input: text.input },
+    ];
+
     let valid = true;
-    [{ field: title, val: title.input.value }, { field: text, val: text.input.value }]
-      .forEach(({ field, val }) => {
-        if (!val.trim()) {
-          setFieldError(field.el, 'This field is required');
-          valid = false;
-        } else {
-          clearFieldError(field.el);
-        }
-      });
+    fields.forEach(({ field, input }) => {
+      if (!input.value.trim()) {
+        setFieldError(field.el, 'This field is required');
+        valid = false;
+      } else {
+        clearFieldError(field.el);
+      }
+    });
     if (!valid) return;
 
     submitBtn.disabled = true;
@@ -69,10 +74,13 @@ export async function openLegislationForm(onSuccess, existing = null) {
     try {
       if (existing) {
         await api.updateLegislation(existing.id, data);
+        modal.close();
+        showToast(`Legislation: "${data.title}" updated`, 'success');
       } else {
         await api.createLegislation(data);
+        modal.close();
+        showToast(`Legislation: "${data.title}" added`, 'success');
       }
-      modal.close();
       onSuccess();
     } catch (err) {
       submitBtn.disabled = false;

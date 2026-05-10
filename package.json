@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "cd src/backend && npm install && node src/main.js"
+    "start": "cd src/backend && npm install && node main.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.4"
