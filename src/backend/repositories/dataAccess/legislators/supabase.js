@@ -1,7 +1,7 @@
 //
-// legislatorRepository.js
+// dataAccess/legislators/supabase.js
 // 05-09-2026
-// Data access layer for the legislator table
+// Supabase data access implementation for the legislator table
 //
 
 const supabase = require('../supabaseClient');

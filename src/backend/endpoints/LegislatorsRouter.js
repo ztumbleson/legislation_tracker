@@ -6,7 +6,7 @@
 
 const express = require('express');
 const router = express.Router();
-const repo = require('../repositories/legislatorRepository');
+const repo = require('../repositories/legislatorsRepository');
 const legislationRepo = require('../repositories/legislationRepository');
 const { validId } = require('../utils/validation');
 
