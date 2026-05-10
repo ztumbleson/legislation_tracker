@@ -1,5 +1,5 @@
 //
-// supabaseClient.js
+// repositories/supabaseClient.js
 // 05-09-2026
 // Creates supabase/postgres database connection
 //

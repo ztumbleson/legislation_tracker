@@ -1,0 +1,205 @@
+{
+  "legislators": [
+    {
+      "id": "a00e48e2-d528-4747-a6b0-fb51e9716ca9",
+      "first_name": "John",
+      "last_name": "Smith",
+      "hometown": "Reynoldsburg"
+    },
+    {
+      "id": "6ba0f66f-e8dc-4aba-a5c7-7e3467fe6e65",
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "hometown": "Centerville"
+    },
+    {
+      "id": "56da104f-f4b2-4bfa-9f67-9e35e3b13927",
+      "first_name": "John",
+      "last_name": "Legislator",
+      "hometown": "Lima"
+    },
+    {
+      "id": "7a08b68a-ba4e-4b64-8f24-3f966b09ca9d",
+      "first_name": "Jane",
+      "last_name": "Legislator",
+      "hometown": "Ironton"
+    },
+    {
+      "id": "d0bcfd66-d298-4b46-b705-11211e9deff3",
+      "first_name": "Carl",
+      "last_name": "Smith",
+      "hometown": "Shaker Heights"
+    },
+    {
+      "id": "ebb27124-5913-4a9c-a168-a7509482c895",
+      "first_name": "Carla",
+      "last_name": "Smith",
+      "hometown": "Zanesville"
+    },
+    {
+      "id": "bf88fbe2-c554-4acd-ab50-c32cadd72644",
+      "first_name": "Carl",
+      "last_name": "Doe",
+      "hometown": "Toledo"
+    },
+    {
+      "id": "0c66208f-8f31-4078-87e3-c9616dc6b253",
+      "first_name": "Carla",
+      "last_name": "Doe",
+      "hometown": "Grandview Heights"
+    },
+    {
+      "id": "1263c9ef-7235-49e6-9760-ff427f9cd841",
+      "first_name": "John",
+      "last_name": "Doe",
+      "hometown": "Springfield"
+    },
+    {
+      "id": "e6f385aa-fc6b-474b-9aa1-2e946a877b8e",
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "hometown": "Marion"
+    },
+    {
+      "id": "1cc80315-47f2-43af-b5b1-2524ab6ce5e7",
+      "first_name": "Local DB",
+      "last_name": "Legislator",
+      "hometown": "Only for Local DB (JSON)"
+    }
+  ],
+  "legislation": [
+    {
+      "id": "f3c100c3-1d49-4b83-a7b3-86a7a0f5e34f",
+      "created_at": "2026-05-09T23:49:50.021Z",
+      "title": "Bill #1 - \"Normal\"",
+      "text": "This is a test bill with some body text that is long enough to go onto multiple lines."
+    },
+    {
+      "id": "1a0f6a70-9001-49f8-8d0f-51d211ba7832",
+      "created_at": "2026-05-09T23:50:14.112Z",
+      "title": "Bill #2 - No sponsors",
+      "text": "This is a bill with no sponsors to test that functionality."
+    },
+    {
+      "id": "3b0a1601-c7d9-4b21-949f-f0abb476accc",
+      "created_at": "2026-05-09T23:52:03.288Z",
+      "title": "Bill #3 - Long body text",
+      "text": "This is a bill with long body text:\n\n(A) There is hereby established the office of information technology within the department of administrative services. The office shall be under the supervision of a state chief information officer to be appointed by the director of administrative services and subject to removal at the pleasure of the director. The chief information officer is an assistant director of administrative services.\n\n(B) Under the direction of the director of administrative services, the state chief information officer shall lead, oversee, and direct state agency activities related to information technology development and use. In that regard, the state chief information officer shall do all of the following:\n\n(1) Coordinate and superintend statewide efforts to promote common use and development of technology by state agencies. The office of information technology shall establish policies and standards that govern and direct state agency participation in statewide programs and initiatives.\n\n(2) Coordinate with the office of procurement services to establish policies and standards for state agency acquisition of information technology supplies and services;\n\n(3) Establish policies and standards for the use of common information technology by state agencies, including, but not limited to, hardware, software, technology services, and security, and the extension of the service life of information technology systems, with which state agencies shall comply;\n\n(4) Establish criteria and review processes to identify state agency information technology projects or purchases that require alignment or oversight. As appropriate, the department of administrative services shall provide the governor and the director of budget and management with notice and advice regarding the appropriate allocation of resources for those projects. The state chief information officer may require state agencies to provide, and may prescribe the form and manner by which they must provide, information to fulfill the state chief information officer's alignment and oversight role;\n\n(5) Establish policies and procedures for the security of personal information that is maintained and destroyed by state agencies;\n\n(6) Employ a chief information security officer who is responsible for the implementation of the policies and procedures described in division (B)(5) of this section and for coordinating the implementation of those policies and procedures in all of the state agencies;\n\n(7) Employ a chief privacy officer who is responsible for advising state agencies when establishing policies and procedures for the security of personal information and developing education and training programs regarding the state's security procedures;\n\n(8) Establish policies on the purchasing, use, and reimbursement for use of handheld computing and telecommunications devices by state agency employees;\n\n(9) Establish policies for the reduction of printing and for the increased use of electronic records by state agencies;\n\n(10) Establish policies for the reduction of energy consumption by state agencies."
+    },
+    {
+      "id": "6b57058f-5e99-42b4-a623-7375dca4135e",
+      "created_at": "2026-05-10T00:10:21.322Z",
+      "title": "Delete Me!",
+      "text": "A bill created in order to demonstrate the delete functionality"
+    },
+    {
+      "id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "created_at": "2026-05-09T23:52:42.308Z",
+      "title": "Bill #4 - Lots of sponsors",
+      "text": "This is a bill with 10 sponsors."
+    },
+    {
+      "id": "4a6d5e74-a298-404f-9793-8d19d449d86f",
+      "created_at": "2026-05-10T04:09:53.174Z",
+      "title": "Local DB Legislation",
+      "text": "This legislation only shows when the local JSON file is being used as the data source"
+    }
+  ],
+  "legislation_sponsors": [
+    {
+      "id": "36bd1787-152d-43c1-9887-c39c79aba771",
+      "legislation_id": "f3c100c3-1d49-4b83-a7b3-86a7a0f5e34f",
+      "legislator_id": "1263c9ef-7235-49e6-9760-ff427f9cd841"
+    },
+    {
+      "id": "efa21fe4-6b60-47f5-89d3-afec2e813801",
+      "legislation_id": "f3c100c3-1d49-4b83-a7b3-86a7a0f5e34f",
+      "legislator_id": "6ba0f66f-e8dc-4aba-a5c7-7e3467fe6e65"
+    },
+    {
+      "id": "7270fdd3-9d79-46b7-a1a8-5b9618e73796",
+      "legislation_id": "3b0a1601-c7d9-4b21-949f-f0abb476accc",
+      "legislator_id": "0c66208f-8f31-4078-87e3-c9616dc6b253"
+    },
+    {
+      "id": "72331363-1c65-4ee6-a72e-2d7535ea627a",
+      "legislation_id": "6b57058f-5e99-42b4-a623-7375dca4135e",
+      "legislator_id": "0c66208f-8f31-4078-87e3-c9616dc6b253"
+    },
+    {
+      "id": "277c810e-c32b-4e40-a03e-c5e55d4c7e07",
+      "legislation_id": "6b57058f-5e99-42b4-a623-7375dca4135e",
+      "legislator_id": "1263c9ef-7235-49e6-9760-ff427f9cd841"
+    },
+    {
+      "id": "f0fac257-a3b5-4ead-a09a-a37b96595096",
+      "legislation_id": "6b57058f-5e99-42b4-a623-7375dca4135e",
+      "legislator_id": "bf88fbe2-c554-4acd-ab50-c32cadd72644"
+    },
+    {
+      "id": "391c38c6-f684-42a8-89cc-e67a688fb239",
+      "legislation_id": "6b57058f-5e99-42b4-a623-7375dca4135e",
+      "legislator_id": "7a08b68a-ba4e-4b64-8f24-3f966b09ca9d"
+    },
+    {
+      "id": "4fe22d14-aa9d-419f-b769-288681d38baf",
+      "legislation_id": "6b57058f-5e99-42b4-a623-7375dca4135e",
+      "legislator_id": "56da104f-f4b2-4bfa-9f67-9e35e3b13927"
+    },
+    {
+      "id": "b27bde02-0499-4af5-a085-8db215317cc4",
+      "legislation_id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "legislator_id": "1263c9ef-7235-49e6-9760-ff427f9cd841"
+    },
+    {
+      "id": "68f1924c-676f-4b76-a0f7-5f1d739ff3d4",
+      "legislation_id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "legislator_id": "bf88fbe2-c554-4acd-ab50-c32cadd72644"
+    },
+    {
+      "id": "2623136f-8955-41fc-b58c-de019d58a5b2",
+      "legislation_id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "legislator_id": "0c66208f-8f31-4078-87e3-c9616dc6b253"
+    },
+    {
+      "id": "fc8db9d5-adb4-4998-9e16-8091166b84d0",
+      "legislation_id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "legislator_id": "56da104f-f4b2-4bfa-9f67-9e35e3b13927"
+    },
+    {
+      "id": "c884664e-921b-44ea-bfca-da9c3f2802bc",
+      "legislation_id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "legislator_id": "7a08b68a-ba4e-4b64-8f24-3f966b09ca9d"
+    },
+    {
+      "id": "448a1631-1040-4bad-8cc9-25b6fbb0a938",
+      "legislation_id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "legislator_id": "d0bcfd66-d298-4b46-b705-11211e9deff3"
+    },
+    {
+      "id": "2d6222d7-2690-4e6d-8cde-96034a4d61af",
+      "legislation_id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "legislator_id": "ebb27124-5913-4a9c-a168-a7509482c895"
+    },
+    {
+      "id": "aff36af6-c413-4fc8-b7e5-9aaf1197887c",
+      "legislation_id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "legislator_id": "a00e48e2-d528-4747-a6b0-fb51e9716ca9"
+    },
+    {
+      "id": "145bfeaa-ad56-4a6c-a4f3-5c521b18c143",
+      "legislation_id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "legislator_id": "6ba0f66f-e8dc-4aba-a5c7-7e3467fe6e65"
+    },
+    {
+      "id": "a447b8e6-ec2a-4fc9-b3a4-4ffb4ea5c03f",
+      "legislation_id": "b7971c4c-e503-4194-b4da-257c8dbe79c7",
+      "legislator_id": "e6f385aa-fc6b-474b-9aa1-2e946a877b8e"
+    },
+    {
+      "id": "6e48b1f8-e002-4a51-9ce1-dac1f4035799",
+      "legislation_id": "4a6d5e74-a298-404f-9793-8d19d449d86f",
+      "legislator_id": "1cc80315-47f2-43af-b5b1-2524ab6ce5e7"
+    }
+  ]
+}
