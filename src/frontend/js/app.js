@@ -1,9 +1,14 @@
-import { loadPartials } from './components/loader.js';
+import { loadPartials } from './utilities/loader.js';
 import { modal } from './components/forms/modal.js';
 import { loadLegislators, initLegislatorsView } from './views/legislators.js';
 import { loadLegislation, initLegislationView } from './views/legislation.js';
 
-await loadPartials();
+try {
+  await loadPartials();
+} catch (e) {
+  document.body.innerHTML = '<p style="padding:2rem;color:#dc2626">Failed to load the application. Please refresh.</p>';
+  throw e;
+}
 
 modal.init();
 initLegislatorsView();

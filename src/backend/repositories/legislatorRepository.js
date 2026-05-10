@@ -1,3 +1,9 @@
+//
+// legislatorRepository.js
+// 05-09-2026
+// Data access layer for the legislator table
+//
+
 const supabase = require('../supabaseClient');
 
 async function findAll() {

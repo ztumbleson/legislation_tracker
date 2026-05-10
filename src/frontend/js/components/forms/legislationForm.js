@@ -45,16 +45,20 @@ export async function openLegislationForm(onSuccess, existing = null) {
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
+    const fields = [
+      { field: title, input: title.input },
+      { field: text,  input: text.input },
+    ];
+
     let valid = true;
-    [{ field: title, val: title.input.value }, { field: text, val: text.input.value }]
-      .forEach(({ field, val }) => {
-        if (!val.trim()) {
-          setFieldError(field.el, 'This field is required');
-          valid = false;
-        } else {
-          clearFieldError(field.el);
-        }
-      });
+    fields.forEach(({ field, input }) => {
+      if (!input.value.trim()) {
+        setFieldError(field.el, 'This field is required');
+        valid = false;
+      } else {
+        clearFieldError(field.el);
+      }
+    });
     if (!valid) return;
 
     submitBtn.disabled = true;

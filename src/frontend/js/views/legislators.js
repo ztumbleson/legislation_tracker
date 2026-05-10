@@ -1,6 +1,7 @@
 import api from '../utilities/api.js';
 import { escHtml } from '../utilities/utils.js';
 import { openLegislatorForm } from '../components/forms/legislatorForm.js';
+import { openDeleteConfirm } from '../components/forms/deleteConfirm.js';
 import { modal } from '../components/forms/modal.js';
 
 let _legislatorsData = [];
@@ -14,7 +15,7 @@ export async function loadLegislators() {
     const legislators = await api.getLegislators();
     _legislatorsData = legislators;
     applyAndRender();
-  } catch (e) {
+  } catch {
     tbody.innerHTML = `<tr class="error-row"><td colspan="4">Could not load legislators. Is the server running?</td></tr>`;
   }
 }
@@ -137,13 +138,10 @@ export function initLegislatorsView() {
     } else if (btn.classList.contains('btn-edit')) {
       openLegislatorForm(loadLegislators, legislator);
     } else {
-      if (!confirm(`Delete ${legislator.first_name} ${legislator.last_name}?`)) return;
-      try {
+      openDeleteConfirm(`${legislator.first_name} ${legislator.last_name}`, async () => {
         await api.deleteLegislator(id);
         loadLegislators();
-      } catch (err) {
-        alert(err.message);
-      }
+      });
     }
   });
 }

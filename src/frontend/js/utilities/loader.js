@@ -8,6 +8,7 @@ export async function loadPartials() {
 
   await Promise.all(partials.map(async ({ url, slot }) => {
     const res = await fetch(url);
+    if (!res.ok) throw new Error(`Failed to load ${url}`);
     document.getElementById(slot).innerHTML = await res.text();
   }));
 }

@@ -1,6 +1,7 @@
 import api from '../utilities/api.js';
 import { escHtml } from '../utilities/utils.js';
 import { openLegislationForm } from '../components/forms/legislationForm.js';
+import { openDeleteConfirm } from '../components/forms/deleteConfirm.js';
 
 let _legislationData = [];
 let _sortCol = null;
@@ -13,7 +14,7 @@ export async function loadLegislation() {
     const legislation = await api.getLegislation();
     _legislationData = legislation;
     applyAndRender();
-  } catch (e) {
+  } catch {
     tbody.innerHTML = `<tr class="error-row"><td colspan="4">Could not load legislation. Is the server running?</td></tr>`;
   }
 }
@@ -56,7 +57,7 @@ function renderLegislationTable(legislation) {
       <tr data-id="${l.id}">
         <td>${escHtml(l.title)}</td>
         <td class="text-cell"><div class="text-cell-inner" title="${escHtml(l.text)}">${escHtml(l.text)}</div></td>
-        <td class="sponsors-cell">${sponsors || '<span style="color:#94a3b8">None</span>'}</td>
+        <td class="sponsors-cell">${sponsors || 'None'}</td>
         <td class="actions-cell">
           <button class="btn btn-sm btn-secondary btn-edit">Edit</button>
           <button class="btn btn-sm btn-danger btn-delete">Delete</button>
@@ -112,10 +113,10 @@ export function initLegislationView() {
     tooltip.innerHTML = `<ul>${names.map(n => `<li>${n}</li>`).join('')}</ul>`;
     const rect = info.getBoundingClientRect();
     tooltip.classList.add('visible');
-    const tw = tooltip.offsetWidth;
-    const th = tooltip.offsetHeight;
-    const top = rect.top >= th + 6 ? rect.top - th - 6 : rect.bottom + 6;
-    const left = Math.max(8, Math.min(rect.left + rect.width / 2 - tw / 2, window.innerWidth - tw - 8));
+    const tooltipW = tooltip.offsetWidth;
+    const tooltipH = tooltip.offsetHeight;
+    const top = rect.top >= tooltipH + 6 ? rect.top - tooltipH - 6 : rect.bottom + 6;
+    const left = Math.max(8, Math.min(rect.left + rect.width / 2 - tooltipW / 2, window.innerWidth - tooltipW - 8));
     tooltip.style.top = `${top}px`;
     tooltip.style.left = `${left}px`;
   });
@@ -137,13 +138,10 @@ export function initLegislationView() {
     if (btn.classList.contains('btn-edit')) {
       openLegislationForm(loadLegislation, legislation);
     } else {
-      if (!confirm(`Delete "${legislation.title}"?`)) return;
-      try {
+      openDeleteConfirm(legislation.title, async () => {
         await api.deleteLegislation(id);
         loadLegislation();
-      } catch (err) {
-        alert(err.message);
-      }
+      });
     }
   });
 }

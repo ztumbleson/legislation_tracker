@@ -1,12 +1,16 @@
+//
+// LegislationRouter.js
+// 05-09-2026
+// Express router for legislation CRUD endpoints
+//
+
 const express = require('express');
 const router = express.Router();
 const repo = require('../repositories/legislationRepository');
-
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const validId = id => UUID_RE.test(id);
+const { validId } = require('../utils/validation');
 
 // Get all legislation (/legislation)
-router.get('/', async (req, res) => {
+router.get('/', async (_req, res) => {
   res.json(await repo.findAll());
 });
 
