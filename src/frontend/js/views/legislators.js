@@ -1,5 +1,6 @@
 import api from '../utilities/api.js';
 import { escHtml } from '../utilities/utils.js';
+import { PAGE_SIZE, getPageSlice, renderPagination } from '../utilities/pagination.js';
 import { openLegislatorForm } from '../components/forms/legislatorForm.js';
 import { openDeleteConfirm } from '../components/forms/deleteConfirm.js';
 import { modal } from '../components/forms/modal.js';
@@ -7,6 +8,7 @@ import { modal } from '../components/forms/modal.js';
 let _legislatorsData = [];
 let _sortCol = null;
 let _sortDir = 'asc';
+let _page = 1;
 
 export async function loadLegislators() {
   const tbody = document.getElementById('tbody-legislators');
@@ -38,8 +40,12 @@ function applyAndRender() {
     });
   }
 
-  renderLegislatorsTable(data);
+  const totalPages = Math.ceil(data.length / PAGE_SIZE);
+  _page = Math.min(_page, totalPages || 1);
+
+  renderLegislatorsTable(getPageSlice(data, _page));
   updateSortHeaders('table-legislators');
+  renderPagination('pagination-legislators', _page, totalPages, p => { _page = p; applyAndRender(); });
 }
 
 function renderLegislatorsTable(legislators) {
@@ -109,7 +115,7 @@ export function initLegislatorsView() {
     openLegislatorForm(loadLegislators);
   });
 
-  document.getElementById('search-legislators').addEventListener('input', applyAndRender);
+  document.getElementById('search-legislators').addEventListener('input', () => { _page = 1; applyAndRender(); });
 
   document.getElementById('table-legislators').querySelector('thead').addEventListener('click', e => {
     const th = e.target.closest('th[data-col]');
@@ -121,6 +127,7 @@ export function initLegislatorsView() {
       _sortCol = col;
       _sortDir = 'asc';
     }
+    _page = 1;
     applyAndRender();
   });
 

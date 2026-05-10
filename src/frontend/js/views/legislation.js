@@ -1,11 +1,13 @@
 import api from '../utilities/api.js';
 import { escHtml } from '../utilities/utils.js';
+import { PAGE_SIZE, getPageSlice, renderPagination } from '../utilities/pagination.js';
 import { openLegislationForm } from '../components/forms/legislationForm.js';
 import { openDeleteConfirm } from '../components/forms/deleteConfirm.js';
 
 let _legislationData = [];
 let _sortCol = null;
 let _sortDir = 'asc';
+let _page = 1;
 
 export async function loadLegislation() {
   const tbody = document.getElementById('tbody-legislation');
@@ -38,8 +40,12 @@ function applyAndRender() {
     });
   }
 
-  renderLegislationTable(data);
+  const totalPages = Math.ceil(data.length / PAGE_SIZE);
+  _page = Math.min(_page, totalPages || 1);
+
+  renderLegislationTable(getPageSlice(data, _page));
   updateSortHeaders('table-legislation');
+  renderPagination('pagination-legislation', _page, totalPages, p => { _page = p; applyAndRender(); });
 }
 
 function renderLegislationTable(legislation) {
@@ -87,7 +93,7 @@ export function initLegislationView() {
     openLegislationForm(loadLegislation);
   });
 
-  document.getElementById('search-legislation').addEventListener('input', applyAndRender);
+  document.getElementById('search-legislation').addEventListener('input', () => { _page = 1; applyAndRender(); });
 
   document.getElementById('table-legislation').querySelector('thead').addEventListener('click', e => {
     const th = e.target.closest('th[data-col]');
@@ -99,6 +105,7 @@ export function initLegislationView() {
       _sortCol = col;
       _sortDir = 'asc';
     }
+    _page = 1;
     applyAndRender();
   });
 
