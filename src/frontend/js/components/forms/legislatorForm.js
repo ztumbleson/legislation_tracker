@@ -1,4 +1,5 @@
 import api from '../../utilities/api.js';
+import { show as showToast } from '../../utilities/toast.js';
 import { createTextField } from '../textField.js';
 import { modal } from './modal.js';
 import { setFieldError, clearFieldError, setFormError } from './formUtils.js';
@@ -67,10 +68,13 @@ export function openLegislatorForm(onSuccess, existing = null) {
     try {
       if (existing) {
         await api.updateLegislator(existing.id, data);
+        modal.close();
+        showToast(`Legislator: ${data.first_name} ${data.last_name} updated`, 'success');
       } else {
         await api.createLegislator(data);
+        modal.close();
+        showToast(`Legislator: ${data.first_name} ${data.last_name} added`, 'success');
       }
-      modal.close();
       onSuccess();
     } catch (err) {
       submitBtn.disabled = false;

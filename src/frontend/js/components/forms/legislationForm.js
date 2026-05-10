@@ -1,4 +1,5 @@
 import api from '../../utilities/api.js';
+import { show as showToast } from '../../utilities/toast.js';
 import { createTextField } from '../textField.js';
 import { createLongAnswer } from '../longAnswer.js';
 import { createSponsorSelect } from '../sponsorSelect.js';
@@ -73,10 +74,13 @@ export async function openLegislationForm(onSuccess, existing = null) {
     try {
       if (existing) {
         await api.updateLegislation(existing.id, data);
+        modal.close();
+        showToast(`Legislation: "${data.title}" updated`, 'success');
       } else {
         await api.createLegislation(data);
+        modal.close();
+        showToast(`Legislation: "${data.title}" added`, 'success');
       }
-      modal.close();
       onSuccess();
     } catch (err) {
       submitBtn.disabled = false;
