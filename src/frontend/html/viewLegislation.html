@@ -4,11 +4,14 @@
     <button class="btn btn-primary" id="btn-new-legislation">+ New Legislation</button>
   </div>
   <div class="table-container">
+    <div class="table-toolbar">
+      <input type="search" id="search-legislation" class="search-input" placeholder="Search legislation…">
+    </div>
     <table id="table-legislation">
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Text</th>
+          <th class="th-sortable" data-col="title">Title</th>
+          <th class="th-sortable" data-col="text">Text</th>
           <th>Sponsors</th>
           <th></th>
         </tr>

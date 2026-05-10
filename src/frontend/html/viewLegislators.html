@@ -4,12 +4,15 @@
     <button class="btn btn-primary" id="btn-new-legislator">+ New Legislator</button>
   </div>
   <div class="table-container">
+    <div class="table-toolbar">
+      <input type="search" id="search-legislators" class="search-input" placeholder="Search legislators…">
+    </div>
     <table id="table-legislators">
       <thead>
         <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Hometown</th>
+          <th class="th-sortable" data-col="first_name">First Name</th>
+          <th class="th-sortable" data-col="last_name">Last Name</th>
+          <th class="th-sortable" data-col="hometown">Hometown</th>
           <th></th>
         </tr>
       </thead>

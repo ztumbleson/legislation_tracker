@@ -31,6 +31,10 @@ export function openLegislatorForm(onSuccess, existing = null) {
   form.appendChild(hometown.el);
   form.appendChild(actions);
 
+  [firstName, lastName, hometown].forEach(({ el, input }) => {
+    input.addEventListener('input', () => clearFieldError(el));
+  });
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
 

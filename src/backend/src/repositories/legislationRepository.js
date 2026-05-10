@@ -72,9 +72,19 @@ async function update(id, title, text, sponsorIds = []) {
   return { ...legislation, sponsors: sponsorIds };
 }
 
+async function findBySponsor(legislatorId) {
+  const { data, error } = await supabase
+    .from('legislation')
+    .select('id, title, text, created_at, legislation_sponsors!inner(legislator_id)')
+    .eq('legislation_sponsors.legislator_id', legislatorId)
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  return data.map(({ id, title, text, created_at }) => ({ id, title, text, created_at }));
+}
+
 async function remove(id) {
   const { error } = await supabase.from('legislation').delete().eq('id', id);
   if (error) throw error;
 }
 
-module.exports = { findAll, findById, create, update, remove };
+module.exports = { findAll, findById, findBySponsor, create, update, remove };

@@ -40,6 +40,12 @@ const api = {
     if (!res.ok) throw new Error('Failed to delete legislator');
   },
 
+  async getLegislationByLegislator(id) {
+    const res = await fetch(`${API_BASE}/legislators/${id}/legislation`);
+    if (!res.ok) throw new Error('Failed to fetch sponsored legislation');
+    return res.json();
+  },
+
   // --- Legislation ---
 
   async getLegislation() {
