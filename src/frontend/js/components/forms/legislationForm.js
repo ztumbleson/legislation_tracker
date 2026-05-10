@@ -38,6 +38,10 @@ export async function openLegislationForm(onSuccess, existing = null) {
   form.appendChild(sponsors.el);
   form.appendChild(actions);
 
+  [title, text].forEach(({ el, input }) => {
+    input.addEventListener('input', () => clearFieldError(el));
+  });
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
 

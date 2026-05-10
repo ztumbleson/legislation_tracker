@@ -3,9 +3,7 @@ export const modal = (() => {
 
   function init() {
     document.getElementById('btn-modal-close').addEventListener('click', close);
-    document.getElementById('modal-overlay').addEventListener('click', e => {
-      if (e.target === document.getElementById('modal-overlay')) close();
-    });
+
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') close();
     });

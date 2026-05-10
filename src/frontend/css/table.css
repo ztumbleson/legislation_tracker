@@ -5,6 +5,27 @@
   overflow: hidden;
 }
 
+.table-toolbar {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 6px 10px;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--text-muted);
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -23,6 +44,31 @@ th {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
+}
+
+th.th-sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+th.th-sortable:hover {
+  color: var(--text);
+}
+
+th.th-sortable::after {
+  content: ' ↕';
+  opacity: 0.3;
+  font-size: 0.8em;
+}
+
+th.th-sort-asc::after {
+  content: ' ↑';
+  opacity: 1;
+}
+
+th.th-sort-desc::after {
+  content: ' ↓';
+  opacity: 1;
 }
 
 td {
@@ -69,9 +115,13 @@ tbody tr:hover {
 
 .text-cell {
   max-width: 380px;
-  white-space: nowrap;
+}
+
+.text-cell-inner {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .sponsors-cell {
@@ -79,10 +129,73 @@ tbody tr:hover {
   font-size: 0.85rem;
 }
 
+.sponsor-count {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.sponsor-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.65rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--text-muted);
+  border: 1px solid var(--text-muted);
+  border-radius: 50%;
+  cursor: default;
+  vertical-align: middle;
+  margin-left: 0.25rem;
+  user-select: none;
+}
+
+.sponsor-tooltip {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  pointer-events: none;
+}
+
+.sponsor-tooltip.visible {
+  display: block;
+}
+
+.sponsor-tooltip ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+
 .actions-cell {
   white-space: nowrap;
   text-align: right;
   width: 1%;
+}
+
+.actions-cell .btn {
+  width: 60px;
+  justify-content: center;
+}
+
+.actions-cell .btn-icon {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .actions-cell .btn + .btn {
